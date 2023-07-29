@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.ivantsov.githubsearcher.ui.mainSearch.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_repositoryContentFragment"
+            app:destination="@id/repositoryContentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/repositoryContentFragment"
+        android:name="com.ivantsov.githubsearcher.ui.repositoryContent.RepositoryContentFragment"
+        android:label="fragment_repository_content"
+        tools:layout="@layout/fragment_repository_content">
+        <action
+            android:id="@+id/action_repositoryContentFragment_to_repositoryContentFragment"
+            app:destination="@id/repositoryContentFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@android:anim/slide_in_left" />
+        <argument
+            android:name="repositoryFullName"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="path"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_repositoryContentFragment_to_fileBrowseFragment"
+            app:destination="@id/fileBrowseFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/fileBrowseFragment"
+        android:name="com.ivantsov.githubsearcher.ui.fileBrowse.FileBrowseFragment"
+        android:label="fragment_file_browse"
+        app:enterAnim="@android:anim/slide_in_left"
+        tools:layout="@layout/fragment_file_browse">
+        <argument
+            android:name="url"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+</navigation>
